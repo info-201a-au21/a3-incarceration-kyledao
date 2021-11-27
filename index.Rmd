@@ -1,0 +1,110 @@
+---
+title: "Assignment 3: Data Visualization (incarceration)"
+author: "Kyle Dao"
+date: "11/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+source("analysis.R")
+library("knitr")
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Introduction 
+To this day, it become more increasingly obvious that there are clear differences in the rates of incarceration when looking at race. Day by day, more people fight for justice for people of color that are being unfairly incarcerated. As these battles continue, nobody can help but ask themselves, why? Why is that people of color are being unfairly incarcerated? This is a separate question on its own. In order to grasp the situation at hand, the contents of this report tackle the question, "How big is this discrepancy?" To help answer this question, the information in this report uses data collected from the Vera Institute to compare the incarceration rates between races with a primary focus in the difference between White and Black people.
+
+# Summary
+When looking at the data, there is a clear conclusion--**Black people** are being **unfairly incarcerated more White people**. To analyze this, I looked at the county with the largest Black jailed population, Los Angeles County, 
+
+When looking at the jail population in Los Angeles County in the most recent year in the data set, 2018, the proportion of Black people in jail in regards to the population of their race are higher than that of White people. This can be seen by the following investigated values.
+
+Initially, this can be seen by looking at the total amount of Black people jailed versus White people. As of 2018, there were **5024 Black people jailed** while there were **2579 White people jailed**. Of course, 5024 is more than 2579, but a solid conclusion cannot be drawn from this. What if there are much more Black people in LA than White?
+
+Turns out, there are significantly less Black people in LA than White. Between ages 15 and 64, there are only **586915 Black people** while there are **1842942 White people**. At first glimpse, this obviously does not seem right. Why are there **nearly double the amount of Black jailed people than White**, despite having a much smaller population? And, what exactly is this difference in proportion.
+
+Turns out, if you divide the Black jail population by the amount of Black people in Los Angeles county **(about 0.00856)**, it is 6 times greater than if you do the same with White People **(0.00140)**.
+
+# Values of Interest
+Value 1
+
+1) What is the most recent year in the data set?
+```{r, echo=FALSE}
+recent_year
+```
+
+Value 2
+
+2) What county has the highest amount of jailed Black people?
+```{r, echo=FALSE}
+county_highest_pop
+```
+
+Value 3
+
+3) What is the Black population in county_highest_pop in 2018?
+```{r, echo=FALSE}
+black_population
+```
+
+Value 4
+
+4) What is the White population in county_highest_pop in 2018
+```{r, echo=FALSE}
+white_population
+```
+
+Value 5
+
+5) How many Black people are jailed in county_highest_pop in recent_year
+```{r, echo=FALSE}
+blacks_jailed
+```
+
+Value 6
+
+6) How many White people are jailed in county_highest_pop in recent_year
+```{r, echo=FALSE}
+whites_jailed
+```
+
+Value 7
+
+7) What is the proportion of jailed Black people to the population in county_highest_pop in recent_year
+```{r, echo=FALSE}
+blacks_jailed_proportion
+```
+
+Value 8
+
+8) What is the proportion of jailed White people to the population in county_highest_pop in recent_year
+```{r, echo=FALSE}
+whites_jailed_proportion
+```
+
+When looking a these variables, I get a sense of the amount of Black and White people in jail and it becomes even more obvious that there is a disparity. To also account for the amount of people that may be living in that county, I also observed the proportion of them jailed when looking at the population for the race. I chose to work with county that had the population of jailed Black people in order to work with a county that has a large amount of people. In short, I just wanted to establish that there is an abundantly clear difference when looking at the amount of Black people in jail in comparison to White people.
+
+# Trends Over Time
+```{r trend_chart, echo=FALSE}
+trend_chart
+```
+
+Here, I examine the proportions of races jailed with respect to their own race population over the years. In other words, I am analyzing how many people Black, White, AAPI, and Latinx are jailed divided by the population of their respective race between the ages 15 and 64.
+
+This was accomplished by first breaking the data set up and grouping it by years. From here, I extracted the population for each race and the jailed population for the respective race. I then created a new data set with the proportion of these jailed populations by dividing the values for each year. 
+
+As a result, I was able to highlight the differences between the jailing proportions for each race over the years and visually see the comparisons. As the chart shows, **Black people are jailed at a much higher proportion** in comparison to the three other races. I was a little surprised to see that **Asian Americans and Pacific Islanders were a little on the low side**, but as expected, Black people are obviously incarcerated at a much higher proportion, along with people of Latin descent.
+
+# Variable Comparsion
+```{r scatter_variable_data, echo=FALSE}
+scatter_variable_data
+```
+
+For this portion, I take a look at the prison population rates for both White and Black people. Since incarceration also encapsulates prison, I wanted to take a step away from jail and consider prison information as well in order to fully consider the differences regarding incarceration. To no surprise, a similar trend continues for prison population rates. For example, some data points show that the Black prison population rate is slightly over 6 times greater than the White prison population rate (6,000,000 vs 1,000,000).
+
+# Map
+```{r map, echo=FALSE}
+map
+```
+
+Here, I decide to look at jailing proportions in each county in the West Coast for data collected in the most recent year, 2018. Sadly, the disproportion jailing continues even when looking at a larger scale. For the jailing proportions across the entire West Coast with some counties having over 60 jailed Black people for 1 White person.
