@@ -7,11 +7,13 @@ library("styler")
 library("mapproj")
 
 # Reading data set
-incarceration_trends <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
+incarceration_trends <- read.csv("https://raw.githubusercontent.com/
+vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
 # Summary Information
-# Here, I want to analyze the proportions for jailed White and Black people in regards
-# to the population of each respective race in the most recent year in this data set
+# Here, I want to analyze the proportions for jailed White and Black people in
+# regards to the population of each respective race in the most recent year
+# in this data set
 
 # 1) What is the most recent year in the data set
 recent_year <- incarceration_trends %>%
@@ -43,15 +45,17 @@ whites_jailed <- incarceration_trends %>%
   filter(year == recent_year, county_name == county_highest_pop) %>%
   pull(white_jail_pop)
 
-# 7) What is the proportion of jailed Black people to the population in county_highest_pop in recent_year
+# 7) What is the proportion of jailed Black people to the population in
+# county_highest_pop in recent_year
 blacks_jailed_proportion <- blacks_jailed / black_population
 
-# 8) What is the proportion of jailed White people to the population in county_highest_pop in recent_year
+# 8) What is the proportion of jailed White people to the population in
+# county_highest_pop in recent_year
 whites_jailed_proportion <- whites_jailed / white_population
 
 # Trends Over Time Chart
-# Compare the proportion of jailed people of a certain race to the respective population
-# between ages 15 and 64.
+# Compare the proportion of jailed people of a certain race to the respective
+# population between ages 15 and 64.
 trend_over_time <- incarceration_trends %>%
   # Group by years
   group_by(year) %>%
@@ -102,7 +106,8 @@ trend_chart <- ggplot(data = trend_over_time) +
     x = year, y = aapi_proportion,
     color = "AAPI"
   ), size = 2) +
-  ggtitle("Proportions Of Jailed People With Respect to Race and Population Over Years") +
+  ggtitle("Proportions Of Jailed People With Respect to Race and Population
+Over Years") +
   labs(x = "Years", y = "Proportions Jailed")
 
 trend_chart$labels$color <- "Race"
@@ -139,7 +144,8 @@ jail_rates <- incarceration_trends %>%
   # Ratio of Black jailed people to White jailed people with respect to their
   # race population
   mutate(
-    black_white_jail_ratio = (black_jail_pop / black_pop_15to64) / (white_jail_pop / white_pop_15to64)
+    black_white_jail_ratio = (black_jail_pop / black_pop_15to64) /
+      (white_jail_pop / white_pop_15to64)
   ) %>%
   filter(year == 2018)
 
@@ -162,7 +168,8 @@ theme <- theme_bw() +
     axis.line = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
-    axis.title = element_blank()
+    axis.title = element_blank(),
+    panel.grid.major = element_blank(),
   )
 
 map <- ggplot(map_data) +
